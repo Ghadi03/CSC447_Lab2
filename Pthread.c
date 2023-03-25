@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <time.h>
 
 #define M 3
 #define N 3
@@ -38,6 +39,8 @@ int main() {
     pthread_t threads[M * P];
     int thread_count = 0;
 
+    clock_t start = clock();
+
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < P; j++) {
             pos *data = (pos *)malloc(sizeof(pos));
@@ -50,6 +53,9 @@ int main() {
         }
     }
 
+    clock_t end = clock();
+    double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
+
     printf("Result:\n");
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < P; j++) {
@@ -58,5 +64,8 @@ int main() {
         printf("\n");
     }
 
+    printf("Execution time: %f seconds\n", time_spent);
+
     return 0;
 }
+
