@@ -16,6 +16,8 @@ int B[N][P] = { {9, 8, 7},
 int C[M][P];
 
 int main() {
+    double start_time = omp_get_wtime();
+
     #pragma omp parallel for
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < P; j++) {
@@ -29,6 +31,9 @@ int main() {
         }
     }
 
+    double end_time = omp_get_wtime();
+    double elapsed_time = end_time - start_time;
+
     printf("Result:\n");
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < P; j++) {
@@ -37,4 +42,7 @@ int main() {
         printf("\n");
     }
 
+    printf("Elapsed time: %f seconds\n", elapsed_time);
+
     return 0;
+}
