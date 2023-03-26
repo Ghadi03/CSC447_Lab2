@@ -17,7 +17,7 @@ int C[M][P];
 
 int main() {
     double start_time = omp_get_wtime();
-
+    printf("Max threads: %d\n", omp_get_max_threads());
     #pragma omp parallel for
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < P; j++) {
